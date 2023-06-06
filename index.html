@@ -29,15 +29,15 @@ body {
         repeating-linear-gradient(0deg, transparent, transparent 98%, #ffde56 98%, #ffde56 100%),
         repeating-linear-gradient(90deg, transparent, transparent 98%, #ffde56 98%, #ffde56 100%);
     background-size: 100px 100px;
-    animation: move-bg 5s linear infinite;
+       animation: move-bg 10s linear infinite;
 }
 
 @keyframes move-bg {
     0% {
-        background-position: 100px 0, 0 100px;
+        background-position: 0 0, 0 0;
     }
     100% {
-        background-position: 0 100px, 100px 0;
+        background-position: -100px 100px, -100px 100px;
     }
 }
 
