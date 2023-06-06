@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong Game</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    font-family: 'Press Start 2P', cursive;
+    color: #ffde56;
+}
+
+body {
+    text-align: center;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 98%, #ffde56 98%, #ffde56 100%),
+        repeating-linear-gradient(90deg, transparent, transparent 98%, #ffde56 98%, #ffde56 100%);
+    background-size: 100px 100px;
+       animation: move-bg 10s linear infinite;
+}
+
+@keyframes move-bg {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+    100% {
+        background-position: -100px 100px, -100px 100px;
+    }
+}
+
+</style>
+<body>
+    <h1>TRANS PONG</h1>
+    <canvas></canvas>
+    <p>CONTROL LEFT PLAYER WITH UP & DOWN ARROWS</p>
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
