@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pong Game</title>
-</head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -26,8 +25,8 @@ body {
     width: 100%;
     overflow: hidden;
     background-image: 
-        repeating-linear-gradient(0deg, transparent, transparent 98%, #ffde56 98%, #ffde56 100%),
-        repeating-linear-gradient(90deg, transparent, transparent 98%, #ffde56 98%, #ffde56 100%);
+        repeating-linear-gradient(0deg, transparent, transparent 98%, #4f420b 98%, #4f420b 100%),
+        repeating-linear-gradient(90deg, transparent, transparent 98%, #4f420b 98%, #4f420b 100%);
     background-size: 100px 100px;
        animation: move-bg 10s linear infinite;
 }
@@ -40,13 +39,140 @@ body {
         background-position: -100px 100px, -100px 100px;
     }
 }
+#gameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    margin: 0 auto;
+}
 
+#game {
+    flex: 1;
+}
+
+#chat-section {
+    width: 300px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#chat {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#chat::-webkit-scrollbar {
+    width: 15px;
+}
+
+#chat::-webkit-scrollbar-track {
+    background: black;
+}
+
+#chat::-webkit-scrollbar-thumb {
+    background: #ffde56;
+    border-radius: 7.5px;
+}
+
+#chat-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 10%;
+    position: sticky;
+    bottom: 0;
+    margin-bottom: 10px; 
+}
+
+#chat-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 3px; 
+    background-color: #505050;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#send-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffde56;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s background-color ease-in-out;
+    outline: none;
+}
+
+#send-btn:hover {
+    background-color: #4f420b;
+}
+
+.bubble-game {
+    align-self: flex-start;
+    margin: 5px;
+    padding: 10px;
+    background-color: #ffde56;
+    color: black;
+    border-radius: 5px;
+    text-align: left;
+    word-wrap: break-word;
+    display: inline-block;
+    max-width: 80%;
+}
+
+.bubble-user {
+    max-width: 80%; /* Limit the width of the bubble */
+    align-self: flex-end;
+    margin: 5px;
+    padding: 10px;
+    background-color: #505050;
+    color: black;
+    border-radius: 5px;
+    text-align: left;
+    word-break: break-word;
+    display: inline-block;
+}
+
+#login-button {
+        padding: 10px 20px;
+        background-color: #ffde56;
+        color: black;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+    }
 </style>
+</head>
 <body>
     <h1>TRANS PONG</h1>
-    <canvas></canvas>
+    <div id="gameContainer">
+        <canvas id="game"></canvas>
+        <div id="chat-section">
+            <div id="chat"></div>
+            <div id="chat-controls">
+                <input type="text" id="chat-input" placeholder="TYPE A MESSAGE...">
+                <button id="send-btn">SEND</button>
+            </div>
+        </div>
+    </div>
     <p>CONTROL LEFT PLAYER WITH UP & DOWN ARROWS</p>
-	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <a id="login-button" href="welcome.html">BACK TO MENU</a>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script src="./script.js"></script>
 </body>
 </html>

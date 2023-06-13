@@ -6,7 +6,7 @@ var DIRECTION = {
     RIGHT: 4
 };
  
-var rounds = [5, 5, 3, 3, 2];
+var rounds = [5];
 var colorCounter = 0;
  
 // The ball object (The cube that bounces back and forth)
@@ -192,6 +192,7 @@ var Game = {
             // there are not.
             if (!rounds[this.round + 1]) {
                 this.over = true;
+                addChatBubbleBot("GG!");
                 setTimeout(function () { Pong.endGameMenu('BRAVO BG'); }, 1000);
             } else {
                 // If there is another round, reset all the values and increment the round number.
@@ -207,6 +208,7 @@ var Game = {
         // Check to see if the ai/AI has won the round.
         else if (this.ai.score === rounds[this.round]) {
             this.over = true;
+            addChatBubbleBot("SUCK ON MY BALLS!");
             setTimeout(function () { Pong.endGameMenu('LOSER T MAUVAIS JACK'); }, 1000);
         }
     },
@@ -232,7 +234,7 @@ var Game = {
             this.canvas.height
         );
  
-        // Set the fill style to white (For the paddles and the ball)
+        // Set the fill style to yellow (For the paddles and the ball)
         this.context.fillStyle = '#ffde56';
  
         // Draw the Player
@@ -320,16 +322,17 @@ var Game = {
     listen: function () {
         document.addEventListener('keydown', function (key) {
             // Handle the 'Press any key to begin' function and start the game.
-            if (Pong.running === false) {
+            if (Pong.running === false && key.keyCode === 38) {
                 Pong.running = true;
+                addChatBubbleBot("GAME ON!");
                 window.requestAnimationFrame(Pong.loop);
             }
  
-            // Handle up arrow and w key events
-            if (key.keyCode === 38 || key.keyCode === 87) Pong.player.move = DIRECTION.UP;
+            // Handle up arrow event
+            if (key.keyCode === 38) Pong.player.move = DIRECTION.UP;
  
-            // Handle down arrow and s key events
-            if (key.keyCode === 40 || key.keyCode === 83) Pong.player.move = DIRECTION.DOWN;
+            // Handle down arrowevent
+            if (key.keyCode === 40) Pong.player.move = DIRECTION.DOWN;
         });
  
         // Stop the player from moving when there are no keys being pressed.
@@ -341,7 +344,8 @@ var Game = {
         this.ball = Ball.new.call(this, this.ball.speed);
         this.turn = loser;
         this.timer = (new Date()).getTime();
- 
+        if(victor == this.player) {addChatBubbleBot("NICE!");
+        } else {addChatBubbleBot("QUOICOUFLOP!");}
         victor.score++;
     },
  
@@ -361,3 +365,39 @@ if ("fonts" in document) {
 } else {
     Pong.initialize();
 }
+
+// creates a bot bubble chat
+function addChatBubbleBot(message) {
+    var messageElement = document.createElement("div");
+    messageElement.textContent = message;
+    messageElement.className = "bubble-game";
+    document.getElementById("chat").appendChild(messageElement);
+}
+
+// creates a user bubble chat
+function addChatBubbleUser(message) {
+    var messageElement = document.createElement("div");
+    messageElement.textContent = message;
+    messageElement.className = "bubble-user";
+    document.getElementById("chat").appendChild(messageElement);
+}
+
+// sends message when 'Send' button is clicked
+document.getElementById("send-btn").addEventListener("click", function() {
+    var message = document.getElementById("chat-input").value;
+    if (message) {
+        addChatBubbleUser(message);
+        document.getElementById("chat-input").value = ""; // Clear the input field
+    }
+});
+
+// sends message when 'Enter' key is pressed
+document.getElementById("chat-input").addEventListener("keydown", function(event) {
+    if (event.key === 'Enter') {
+        var message = document.getElementById("chat-input").value;
+        if (message) {
+            addChatBubbleUser(message);
+            document.getElementById("chat-input").value = ""; // Clear the input field
+        }
+    }
+});
